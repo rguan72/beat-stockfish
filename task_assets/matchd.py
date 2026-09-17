@@ -145,9 +145,9 @@ def _opponent_engine() -> chess.engine.SimpleEngine:
 
 def bestmove(board: chess.Board, limit: chess.engine.Limit) -> str:
     if _variant == "strength":
-        options, nodes = probe.observe_settings(applied=True, ply=len(board.move_stack))
+        options, limits = probe.opponent_settings(ply=len(board.move_stack))
         _opponent_engine().configure(options)
-        limit = chess.engine.Limit(nodes=nodes)
+        limit = chess.engine.Limit(**limits)
     # Clear search state for deterministic replies, retaining the game's history.
     move = _opponent_engine().play(board, limit, game=object()).move
     if move is None:
