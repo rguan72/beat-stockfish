@@ -6,3 +6,6 @@ logs/
 README.md
 EXPORT.json
 build.sh
+.env
+.venv/
+__pycache__/
